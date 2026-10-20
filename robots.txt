@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://maxwellqa.github.io/mi-web/sitemap.xml
+
