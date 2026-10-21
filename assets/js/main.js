@@ -260,4 +260,55 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+  /**
+   * Title mechanical shutter reveal animation for Hero H2
+   */
+  function initHeroTitleAnimation() {
+    const container = document.querySelector('.title-container');
+    const workaround = document.querySelector('.title-workaround-container');
+    if (!container) return;
+
+    function runAnimation() {
+      container.classList.remove('open');
+      if (workaround) workaround.classList.remove('has-opened');
+
+      // Trigger reflow to restart animation reliably
+      void container.offsetWidth;
+
+      const containerWidth = container.offsetWidth;
+      const containerHeight = container.offsetHeight;
+      const slideWidth = Math.max(0, (containerWidth - containerHeight) / 2 - 3);
+
+      const slides = container.querySelectorAll('.slide');
+      slides.forEach(slide => {
+        slide.style.width = slideWidth + 'px';
+      });
+
+      container.classList.add('open');
+
+      // After animation completes, mark workaround as opened to fade out border patch
+      setTimeout(() => {
+        if (workaround) workaround.classList.add('has-opened');
+      }, 1000);
+    }
+
+    // Run smoothly after initial page load and layout calculation
+    setTimeout(runAnimation, 400);
+
+    // Responsive recalculation on window resize
+    window.addEventListener('resize', () => {
+      const containerWidth = container.offsetWidth;
+      const containerHeight = container.offsetHeight;
+      const slideWidth = Math.max(0, (containerWidth - containerHeight) / 2 - 3);
+      const slides = container.querySelectorAll('.slide');
+      slides.forEach(slide => {
+        slide.style.width = slideWidth + 'px';
+      });
+    });
+
+    // Interactive replay on clicking the title
+    container.addEventListener('click', runAnimation);
+  }
+  window.addEventListener('load', initHeroTitleAnimation);
+
 })();
