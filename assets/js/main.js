@@ -274,8 +274,8 @@
       container.classList.add('open');
     }
 
-    // Run smoothly after page load
-    setTimeout(runAnimation, 300);
+    // Run smoothly 500ms after page load
+    setTimeout(runAnimation, 500);
 
     // Interactive replay on clicking the title
     container.addEventListener('click', runAnimation);

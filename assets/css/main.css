@@ -992,9 +992,17 @@ section,
   left: 50%;
 }
 
-/* Apertura animada del título sin tapar el fondo */
+/* Apertura animada del título sin tapar el fondo (ritmo suave y visible) */
 .title-container.open .the-title {
-  animation: reveal-title 0.75s cubic-bezier(.21, .57, .44, 1) forwards;
+  animation: reveal-title 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.title-container.open .slide.left {
+  animation: slide-shutter-left 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.title-container.open .slide.right {
+  animation: slide-shutter-right 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes reveal-title {
@@ -1002,7 +1010,7 @@ section,
     clip-path: polygon(50% -20%, 50% -20%, calc(50% - 30px) 120%, calc(50% - 30px) 120%);
     opacity: 0;
   }
-  20% {
+  15% {
     opacity: 1;
   }
   100% {
@@ -1012,11 +1020,11 @@ section,
 }
 
 .title-container.open .slide.left {
-  animation: slide-shutter-left 0.75s cubic-bezier(.21, .57, .44, 1) forwards;
+  animation: slide-shutter-left 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .title-container.open .slide.right {
-  animation: slide-shutter-right 0.75s cubic-bezier(.21, .57, .44, 1) forwards;
+  animation: slide-shutter-right 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes slide-shutter-left {
@@ -1024,7 +1032,7 @@ section,
     left: 50%;
     opacity: 1;
   }
-  75% {
+  80% {
     opacity: 1;
   }
   100% {
@@ -1038,7 +1046,7 @@ section,
     left: 50%;
     opacity: 1;
   }
-  75% {
+  80% {
     opacity: 1;
   }
   100% {
