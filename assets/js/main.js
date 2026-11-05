@@ -71,13 +71,21 @@
   });
 
   /**
-   * Preloader
+   * Page Load State: Reveal Header and Content smoothly after background is ready
    */
-  const preloader = document.querySelector('#preloader');
-  if (preloader) {
-    window.addEventListener('load', () => {
-      preloader.remove();
-    });
+  function revealPage() {
+    if (document.body.classList.contains('is-loading')) {
+      document.body.classList.remove('is-loading');
+      document.body.classList.add('loaded');
+    }
+  }
+
+  if (document.readyState === 'complete') {
+    revealPage();
+  } else {
+    window.addEventListener('load', revealPage);
+    // Fallback: don't let slow external assets hold back UI reveal
+    setTimeout(revealPage, 1200);
   }
 
   /**

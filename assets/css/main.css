@@ -664,38 +664,53 @@ p {
 }
 
 /*--------------------------------------------------------------
-# Preloader
+# Page Load State (Hero Background shows first, header & content fade in)
 --------------------------------------------------------------*/
-#preloader {
-  position: fixed;
-  inset: 0;
-  z-index: 999999;
-  overflow: hidden;
-  background: var(--color-bg);
-  transition: all 0.6s ease-out;
+#header {
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
 
-#preloader:before {
-  content: "";
-  position: fixed;
-  top: calc(50% - 30px);
-  left: calc(50% - 30px);
-  border: 6px solid rgba(45, 212, 191, 0.2);
-  border-color: var(--color-accent) transparent var(--color-accent) transparent;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: animate-preloader 1.5s linear infinite;
+.hero .container {
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-@keyframes animate-preloader {
-  0% {
-    transform: rotate(0deg);
-  }
+body.is-loading #header {
+  opacity: 0;
+  transform: translateY(-15px);
+  pointer-events: none;
+}
 
-  100% {
-    transform: rotate(360deg);
+body.is-loading .hero .container {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+body.loaded #header {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.loaded .hero .container {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fallback: if scripts lag or fail, reveal after 2s */
+@keyframes fallbackShow {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
+}
+
+body.is-loading #header {
+  animation: fallbackShow 0.5s ease-out 2s forwards;
+}
+
+body.is-loading .hero .container {
+  animation: fallbackShow 0.5s ease-out 2s forwards;
 }
 
 /*--------------------------------------------------------------

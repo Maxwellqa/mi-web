@@ -102,9 +102,13 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- Preload Hero Background Image -->
+  <link rel="preload" as="image" href="assets/img/yo-banner.webp" media="(min-width: 992px)" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/img/yo-mobile.webp" media="(max-width: 991px)" type="image/webp" fetchpriority="high">
 </head>
 
-<body class="index-page">
+<body class="index-page is-loading">
 
   <!-- Header -->
   <header id="header" class="header d-flex align-items-center sticky-top">
@@ -143,9 +147,9 @@
     <!-- Hero Section -->
     <section id="hero" class="hero section dark-background">
 
-      <picture class="hero-bg" data-aos="fade-in">
+      <picture class="hero-bg">
         <source media="(max-width: 991px)" srcset="assets/img/yo-mobile.webp">
-        <img src="assets/img/yo-banner.webp" alt="Maximiliano Martinez - QA Professional">
+        <img src="assets/img/yo-banner.webp" alt="Maximiliano Martinez - QA Professional" fetchpriority="high" loading="eager">
       </picture>
 
       <div class="container d-flex flex-column align-items-center justify-content-center text-center" data-aos="fade-up" data-aos-delay="100">
@@ -716,9 +720,6 @@
 
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Preloader -->
-  <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
